@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iot_project/ThemeData.dart';
-import 'package:iot_project/screens/HomeScreen.dart';
+import 'package:iot_project/screens/bottom_nav_bar.dart';
+import 'package:iot_project/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.darkThemeData,
-      home: const HomeScreen(),
+      home: const BottomNavBar(),
     );
   }
 }

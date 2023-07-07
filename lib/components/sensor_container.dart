@@ -11,13 +11,13 @@ class SensorContainer extends StatelessWidget {
       height: 150,
       width: 150,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.tertiary,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(20)
         ),
         child: Center(
           child: Column(children: [
             SizedBox(height: 35,),
-            Text("$value", style: TextStyle(fontSize: 40, ),),
+            Text("$value", textAlign: TextAlign.center,style: TextStyle(fontSize: 40, ),),
             SizedBox(height: 5,),
             Text(type, style: TextStyle(fontSize: 20),)
           ]),
