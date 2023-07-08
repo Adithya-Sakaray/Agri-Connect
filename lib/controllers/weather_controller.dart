@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 import "package:get/get.dart";
 
 import '../services/weather_service.dart';
@@ -8,8 +5,16 @@ import '../services/weather_service.dart';
 class WeatherController extends GetxController {
 
   var rain = "0".obs;
+  RxBool isLoading = false.obs;
 
-  void getRain() async {
-    rain = await WeatherService.getRain();
+  void getRain() async{
+    try {
+      isLoading.value = true;
+      rain.value = await WeatherService.getRain();
+    }
+    finally {
+      isLoading.value = false;
+    }
+    
   }
 }
