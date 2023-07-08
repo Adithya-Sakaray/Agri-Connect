@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iot_project/screens/soil_screen.dart';
-import 'soil_screen.dart';
+import '../controllers/weather_controller.dart';
 import 'home_screen.dart';
 import 'yield_screen.dart';
 
@@ -12,13 +13,19 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-
+  final WeatherController weatherController = Get.put(WeatherController());
 
   int selectedIndex = 0;
   void setIndex(int index){
     setState(() {
       selectedIndex = index;
     });
+  }
+
+  void initState() {
+    weatherController.getRain();
+    super.initState();
+    
   }
 
   final List <Widget> pages = [

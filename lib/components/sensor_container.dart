@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SensorContainer extends StatelessWidget {
+class SensorContainer extends StatefulWidget {
   final value;
   final type;
-  final isLoading;
+  final RxBool isLoading;
 
-  Widget buildLoading() {
-    if (isLoading){
-      return CircularProgressIndicator();
-    } else {
-      return Text("$value",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 40,
-            ),
-          );
-    }
-    
-  }
   SensorContainer(
       {super.key,
       required this.value,
       required this.type,
       required this.isLoading});
+
+  @override
+  State<SensorContainer> createState() => _SensorContainerState();
+}
+
+class _SensorContainerState extends State<SensorContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,13 +30,22 @@ class SensorContainer extends StatelessWidget {
           SizedBox(
             height: 35,
           ),
-          buildLoading(),
-
+          Obx(() {
+            if (widget.isLoading.value) {
+              return CircularProgressIndicator();
+            } else {
+              return Text("${widget.value}",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 40,
+                  ));
+            }
+          }),
           SizedBox(
             height: 5,
           ),
           Text(
-            type,
+            widget.type,
             style: TextStyle(fontSize: 20),
           )
         ]),
