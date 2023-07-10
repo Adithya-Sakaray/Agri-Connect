@@ -14,115 +14,134 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late List<LineChartModel> chartValues;
-  TooltipBehavior _tooltipBehavior = TooltipBehavior(enable: true);
+  late List<LineChartModel> chartValues = chartDataController.getChartData();
   final WeatherController weatherController = Get.put(WeatherController());
   final ChartDataController chartDataController = ChartDataController();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    chartValues = chartDataController.getChartData();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   chartValues = chartDataController.getChartData();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .background,
+        centerTitle: true,
         elevation: 0,
-        title: const Text(
-          "Agri-Connect",
-          style: TextStyle(fontSize: 30, color: Colors.white),
+        title: Text(
+          "AgriConnect",
+          style: TextStyle(fontSize: 25, color: Theme
+              .of(context)
+              .colorScheme
+              .secondary, fontWeight: FontWeight.w800),
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme
+          .of(context)
+          .colorScheme
+          .background,
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SensorContainer(
-                      value: "35 °C",
-                      type: "Temperature",
-                      isLoading: false.obs,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SensorContainer(
-                      value: "40",
-                      type: "Humidity",
-                      isLoading: false.obs,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SensorContainer(
-                      value: "${weatherController.rain}%",
-                      type: "Chance of\n\t\t\t\t\tRain",
-                      isLoading: weatherController.isLoading,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SensorContainer(
-                      value: "40",
-                      type: "Soil Moisture",
-                      isLoading: false.obs,
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  width: 400,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SfCartesianChart(
-                      title: ChartTitle(text: "Soil Moisture"),
-                      series: <ChartSeries>[
-                        LineSeries<LineChartModel, int>(
-                            width: 4,
-                            color: Theme.of(context).colorScheme.error,
-                            dataSource: chartValues,
-                            xValueMapper: (LineChartModel data, _) => data.x,
-                            yValueMapper: (LineChartModel data, _) => data.y)
-                      ],
-                      primaryXAxis: NumericAxis(
-                        edgeLabelPlacement: EdgeLabelPlacement.shift,
-                        majorGridLines: MajorGridLines(width: 0),
-                        minorGridLines: MinorGridLines(width: 0),
-                        isVisible: false,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    const SizedBox(width: 22,),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, top: 5.0, bottom: 10.0),
+                      child: SensorContainer(
+                        value: "35 °C",
+                        type: "Temperature",
+                        isLoading: false.obs,
                       ),
-                      primaryYAxis: NumericAxis(
-                        edgeLabelPlacement: EdgeLabelPlacement.shift,
-                        majorGridLines: MajorGridLines(width: 0),
-                        minorGridLines: MinorGridLines(width: 0),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10.0, right: 10.0, top: 5.0, bottom: 10.0),
+                      child: SensorContainer(
+                        value: "40",
+                        type: "Humidity",
+                        isLoading: false.obs,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 22,),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Obx(() {
+                        return SensorContainer(
+                          value: "${weatherController.rain}%",
+                          type: "Chance of\n\t\t\t\t\tRain",
+                          isLoading: weatherController.isLoading,
+                        );
+                      }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SensorContainer(
+                        value: "40",
+                        type: "Soil Moisture",
+                        isLoading: false.obs,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: 400,
+                    decoration: BoxDecoration(
+                      color: Theme
+                          .of(context)
+                          .colorScheme
+                          .secondary,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SfCartesianChart(
+                        title: ChartTitle(text: "Soil Moisture"),
+                        series: <ChartSeries>[
+                          LineSeries<LineChartModel, int>(
+                              width: 4,
+                              color: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .error,
+                              dataSource: chartValues,
+                              xValueMapper: (LineChartModel data, _) => data.x,
+                              yValueMapper: (LineChartModel data, _) => data.y)
+                        ],
+                        primaryXAxis: NumericAxis(
+                          edgeLabelPlacement: EdgeLabelPlacement.shift,
+                          majorGridLines: const MajorGridLines(width: 0),
+                          minorGridLines: const MinorGridLines(width: 0),
+                          isVisible: false,
+                        ),
+                        primaryYAxis: NumericAxis(
+                          edgeLabelPlacement: EdgeLabelPlacement.shift,
+                          majorGridLines: const MajorGridLines(width: 0),
+                          minorGridLines: const MinorGridLines(width: 0),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      )),
+              ],
+            ),
+          )),
     );
   }
 }

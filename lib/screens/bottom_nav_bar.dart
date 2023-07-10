@@ -22,6 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     });
   }
 
+  @override
   void initState() {
     weatherController.getRain();
     super.initState();
@@ -39,11 +40,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: setIndex,
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         elevation: 0,
-        selectedItemColor: Theme.of(context).colorScheme.secondary,
+        selectedItemColor: Theme.of(context).colorScheme.background,
         unselectedItemColor: Colors.white70,
-        items:  [
+        items:  const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home"

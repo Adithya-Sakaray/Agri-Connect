@@ -27,12 +27,12 @@ class _SensorContainerState extends State<SensorContainer> {
           borderRadius: BorderRadius.circular(20)),
       child: Center(
         child: Column(children: [
-          SizedBox(
+          const SizedBox(
             height: 35,
           ),
           Obx(() {
             if (widget.isLoading.value) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else {
               return Text("${widget.value}",
                   textAlign: TextAlign.center,
@@ -41,7 +41,7 @@ class _SensorContainerState extends State<SensorContainer> {
                   ));
             }
           }),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
