@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iot_project/components/rain_container.dart';
 import 'package:iot_project/components/sensor_container.dart';
 import 'package:iot_project/controllers/weather_controller.dart';
 import 'package:iot_project/models/line_chart_model.dart';
@@ -91,11 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Obx((){return SensorContainer(
-                          value: weatherController.isRaining.value? "It is" : "It is not",
-                          type: "Raining",
+                      child: Obx((){return RainContainer(
+                          value: weatherController.isRaining.value,
                         );}
-                        
                       ),
                     ),
                   ],
@@ -114,14 +113,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SfCartesianChart(
-                        title: ChartTitle(text: "Soil Moisture"),
+                        title: ChartTitle(text: "Soil Moisture", textStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w800),),
                         series: <ChartSeries>[
                           LineSeries<LineChartModel, int>(
                               width: 4,
-                              color: Theme
-                                  .of(context)
-                                  .colorScheme
-                                  .error,
+                              color: Colors.teal.shade400,
                               dataSource: chartValues,
                               xValueMapper: (LineChartModel data, _) => data.x,
                               yValueMapper: (LineChartModel data, _) => data.y)
@@ -133,6 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           isVisible: false,
                         ),
                         primaryYAxis: NumericAxis(
+                          // borderColor: Colors.white,
                           edgeLabelPlacement: EdgeLabelPlacement.shift,
                           majorGridLines: const MajorGridLines(width: 0),
                           minorGridLines: const MinorGridLines(width: 0),

@@ -17,6 +17,13 @@ class ChartDataController {
       LineChartModel(12, 41),
       LineChartModel(13, 42),
       LineChartModel(14, 43),
+      LineChartModel(15, 34),
+      LineChartModel(16, 35),
+      LineChartModel(17, 36),
+      LineChartModel(18, 37),
+      LineChartModel(19, 38),
+      LineChartModel(20, 33),
+
     ];
 
     return chartData;
