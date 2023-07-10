@@ -1,16 +1,11 @@
-# iot_project
+Agri-connect
+===========
 
-A new Flutter project.
+Agri-connect is a mobile app designed to provide real-time farm data, including humidity, soil moisture, temperature, and chance of rain. The app connects to a Raspberry Pi device, which collects sensor data and uploads it to Firebase. It also integrates with the Open Weather API to offer accurate weather information for the user's location. With Agri-connect, farmers can easily monitor their farm conditions and make informed decisions.
 
-## Getting Started
+Features
+--------
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-   Real-time monitoring of humidity, soil moisture, and temperature data
+-   Integration with the Open Weather API to display the chance of rain
+-   Graphical representation of data for easy visualization and analysis
