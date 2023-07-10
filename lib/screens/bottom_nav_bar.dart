@@ -22,12 +22,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
     });
   }
 
-  @override
-  void initState() {
-    weatherController.getRain();
-    super.initState();
+  // @override
+  // void initState() {
+  //   weatherController.getRain();
+  //   super.initState();
     
-  }
+  // }
 
   final List <Widget> pages = [
     HomeScreen(),

@@ -36,6 +36,7 @@ By using our app, you'll benefit from improved crop selection, enhanced resource
       this.image = imageTemporary;
       imgName = image.name;
     });
+    print(imgName);
     Navigator.push(context, MaterialPageRoute(builder: (context) => SoilRecommendationScreen(imageName: imgName, imagePath: File(image.path),)));
   }
 

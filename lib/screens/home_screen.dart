@@ -58,21 +58,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, top: 5.0, bottom: 10.0),
-                      child: SensorContainer(
-                        value: "35 °C",
-                        type: "Temperature",
-                        isLoading: false.obs,
+                      child: Obx((){return SensorContainer(
+                          value: "${weatherController.temperature} °C",
+                          type: "Temperature",
+                        );}
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 10.0, right: 10.0, top: 5.0, bottom: 10.0),
-                      child: SensorContainer(
-                        value: "40",
-                        type: "Humidity",
-                        isLoading: false.obs,
+                      child: Obx((){return SensorContainer(
+                          value: "${weatherController.humidity} %",
+                          type: "Humidity",
+                        );}
+              
+                        ),
                       ),
-                    ),
+              
                   ],
                 ),
                 Row(
@@ -84,16 +86,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         return SensorContainer(
                           value: "${weatherController.rain}%",
                           type: "Chance of\n\t\t\t\t\tRain",
-                          isLoading: weatherController.isLoading,
                         );
                       }),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: SensorContainer(
-                        value: "40",
-                        type: "Soil Moisture",
-                        isLoading: false.obs,
+                      child: Obx((){return SensorContainer(
+                          value: weatherController.isRaining.value? "It is" : "It is not",
+                          type: "Raining",
+                        );}
+                        
                       ),
                     ),
                   ],
@@ -141,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-          )),
-    );
+          )
+          ),);
   }
 }

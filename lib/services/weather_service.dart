@@ -17,6 +17,7 @@ class WeatherService {
       var data = jsonDecode(json);
       var rain = data["list"][0]["pop"];
       rain = (rain * 100).round().toString();
+      print(rain);
       return rain;
     }
     else{

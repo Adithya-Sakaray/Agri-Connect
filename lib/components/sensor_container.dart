@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iot_project/controllers/weather_controller.dart';
 
 class SensorContainer extends StatefulWidget {
   final value;
   final type;
-  final RxBool isLoading;
+  
 
   SensorContainer(
       {super.key,
       required this.value,
-      required this.type,
-      required this.isLoading});
+      required this.type});
 
   @override
   State<SensorContainer> createState() => _SensorContainerState();
 }
 
 class _SensorContainerState extends State<SensorContainer> {
+  WeatherController weatherController = Get.put(WeatherController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +32,7 @@ class _SensorContainerState extends State<SensorContainer> {
             height: 35,
           ),
           Obx(() {
-            if (widget.isLoading.value) {
+            if (weatherController.isLoading.value) {
               return const CircularProgressIndicator();
             } else {
               return Text("${widget.value}",

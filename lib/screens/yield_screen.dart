@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:iot_project/screens/yield_prediction_screen.dart';
 
 class YieldScreen extends StatefulWidget {
   YieldScreen({super.key});
@@ -36,6 +37,7 @@ Our yield predictions are based on extensive research, historical data, and robu
       this.image = imageTemporary;
       imgName = image.name;
     });
+    Navigator.push(context, MaterialPageRoute(builder: (context) => YeildPredictionScreen(imageName: imgName, imagePath: File(image.path)))) ;
     print(imgName);
   }
 

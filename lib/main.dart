@@ -1,14 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iot_project/ThemeData.dart';
-import 'package:iot_project/controllers/weather_controller.dart';
 import 'package:iot_project/screens/bottom_nav_bar.dart';
-import 'package:iot_project/screens/home_screen.dart';
+import 'firebase_options.dart';
 
 void main() async {
 
   // final WeatherController weatherController = Get.put(WeatherController());
   // weatherController.getRain();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

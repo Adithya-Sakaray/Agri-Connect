@@ -60,7 +60,7 @@ class _SoilRecommendationScreenState extends State<SoilRecommendationScreen> {
           });
         }
         break;
-      case "chalkySoil.png":
+      case "chalkySoil.jpg":
         {
           setState(() {
             soilType = "Chalky Soil";

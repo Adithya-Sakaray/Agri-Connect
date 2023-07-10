@@ -37,6 +37,7 @@ dependencies:
   syncfusion_flutter_charts: ^22.1.37
   http: ^1.1.0
   get: ^4.6.5
+  firebase_core: ^2.14.0
   cloud_firestore: ^4.8.2
   image_picker: ^0.8.6+3
 
