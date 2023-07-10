@@ -33,10 +33,11 @@ class WeatherController extends GetxController {
 
   getData() async {
     isLoading.value = true;
-    var data = await FirebaseFirestore.instance
-        .collection("sensor_data").doc("sensor_data")
-        .get();
-    var data1 = data.data();
+    var docRef = await FirebaseFirestore.instance
+        .collection("sensor_data").doc("sensor_data");
+    docRef.snapshots().listen((event) {
+      var data1 = event.data();
+      // var data1 = data.data();
     temperature.value = data1!['temperature'].toString();
     humidity.value = data1['humidity'].toString();
     if (data1['rain_sensor'] == 1) {
@@ -49,7 +50,8 @@ class WeatherController extends GetxController {
     print(isRaining.value);
     print(data1);
     isLoading.value = false;
-    } 
+    });
+  }
 }
 
   
